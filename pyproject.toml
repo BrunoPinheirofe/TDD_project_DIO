@@ -23,6 +23,18 @@ taskipy = "^1.13.0"
 [tool.taskipy.tasks]
 run = 'fastapi dev store/main.py'
 precommit_install = 'poetry run pre-commit install'
+test = 'poetry run pytest'
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+addopts = [
+  "--strict-config",
+  "--strict-markers",
+  "--ignore=docs_src",
+]
+xfail_strict = true
+junit_family = "xunit2"
+
 
 [build-system]
 requires = ["poetry-core"]
